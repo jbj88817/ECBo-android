@@ -3,16 +3,12 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -38,4 +34,7 @@ dependencies {
     // For fragment
     api 'me.yokeyword:fragmentation:1.2.5'
     api 'me.yokeyword:fragmentation-swipeback:1.2.5'
+    // ButterKnife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
