@@ -1,5 +1,7 @@
 package us.bojie.latte.net;
 
+import android.content.Context;
+
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -9,6 +11,8 @@ import us.bojie.latte.net.callback.IError;
 import us.bojie.latte.net.callback.IFailure;
 import us.bojie.latte.net.callback.IRequest;
 import us.bojie.latte.net.callback.ISuccess;
+import us.bojie.latte.ui.LatteLoader;
+import us.bojie.latte.ui.LoaderStyle;
 
 /**
  * Created by bojiejiang on 1/26/18.
@@ -16,13 +20,15 @@ import us.bojie.latte.net.callback.ISuccess;
 
 public class RestClientBuilder {
 
-    private String mUrl;
+    private String mUrl = null;
     private static Map<String, Object> PARAMS = RestCreator.getParams();
-    private IRequest mIRequest;
-    private ISuccess mISuccess;
-    private IFailure mIFailure;
-    private IError mIError;
-    private RequestBody mBody;
+    private IRequest mIRequest = null;
+    private ISuccess mISuccess = null;
+    private IFailure mIFailure = null;
+    private IError mIError = null;
+    private RequestBody mBody = null;
+    private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
 
     RestClientBuilder() {
     }
@@ -67,7 +73,20 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context, LoaderStyle loaderStyle) {
+        mContext = context;
+        mLoaderStyle = loaderStyle;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context) {
+        mContext = context;
+        mLoaderStyle = LatteLoader.DEFAULT_LOADER;
+        return this;
+    }
+
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody);
+        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess,
+                mIFailure, mIError, mBody, mContext, mLoaderStyle);
     }
 }
