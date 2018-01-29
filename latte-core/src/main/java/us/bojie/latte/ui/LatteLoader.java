@@ -11,7 +11,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 
 import us.bojie.latte.R;
-import us.bojie.latte.util.DimenUtil;
+import us.bojie.latte.util.dimen.DimenUtil;
 
 /**
  * Created by bojiejiang on 1/28/18.

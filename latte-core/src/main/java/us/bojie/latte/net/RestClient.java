@@ -16,6 +16,7 @@ import us.bojie.latte.net.callback.IFailure;
 import us.bojie.latte.net.callback.IRequest;
 import us.bojie.latte.net.callback.ISuccess;
 import us.bojie.latte.net.callback.RequestCallbacks;
+import us.bojie.latte.net.download.DownloadHandler;
 import us.bojie.latte.ui.LatteLoader;
 import us.bojie.latte.ui.LoaderStyle;
 
@@ -28,6 +29,9 @@ public class RestClient {
     private final String URL;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
@@ -37,12 +41,16 @@ public class RestClient {
     private final Context CONTEXT;
 
     public RestClient(String url, Map<String, Object> params,
+                      String downloadDir, String extension, String name,
                       IRequest request, ISuccess success,
                       IFailure failure, IError error,
                       RequestBody body, File file,
                       Context context, LoaderStyle loaderStyle) {
         this.URL = url;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.FAILURE = failure;
@@ -143,5 +151,14 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME, SUCCESS, FAILURE, ERROR)
+                .handleDownload();
     }
 }
