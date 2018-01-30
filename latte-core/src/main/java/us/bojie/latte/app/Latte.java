@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public final class Latte {
     public static Configurator init(Context context) {
-        getConfigurations().put(ConfigType.APPLICATION_CONTENT.name(), context.getApplicationContext());
+        getConfigurations().put(ConfigKeys.APPLICATION_CONTENT.name(), context.getApplicationContext());
         return Configurator.getInstance();
     }
 
@@ -19,6 +19,6 @@ public final class Latte {
     }
 
     public static Context getApplicationContext() {
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTENT.name());
+        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTENT.name());
     }
 }

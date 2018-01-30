@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-import us.bojie.latte.app.ConfigType;
+import us.bojie.latte.app.ConfigKeys;
 import us.bojie.latte.app.Latte;
 
 /**
@@ -29,7 +29,7 @@ public class RestCreator {
 
     private static final class RetrofitHolder {
         private static final String BASE_URL = (String) Latte.getConfigurations()
-                .get(ConfigType.API_HOST.name());
+                .get(ConfigKeys.API_HOST.name());
 
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
