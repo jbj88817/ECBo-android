@@ -6,7 +6,7 @@ package us.bojie.latte.app;
 
 public enum ConfigKeys {
     API_HOST,
-    APPLICATION_CONTENT,
+    APPLICATION_CONTEXT,
     CONFIG_READY,
     ICON,
     LOADER_DELEYED,
