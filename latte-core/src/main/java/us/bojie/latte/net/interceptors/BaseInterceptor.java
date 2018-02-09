@@ -16,9 +16,7 @@ import okhttp3.Response;
 public abstract class BaseInterceptor implements Interceptor {
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
-        return null;
-    }
+    public abstract Response intercept(Chain chain) throws IOException;
 
     protected LinkedHashMap<String, String> getUrlParameters(Chain chain) {
         final HttpUrl url = chain.request().url();
