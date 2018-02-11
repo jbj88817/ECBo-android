@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ui.launcher.LauncherHolderCreator;
+import us.bojie.latte.ui.launcher.ScrollLauncherTag;
+import us.bojie.latte.util.storage.LattePreference;
 
 /**
  * Created by bojiejiang on 2/11/18.
  */
 
-public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener{
+public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
@@ -31,7 +33,7 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(), INTEGERS)
-                .setPageIndicator(new int[]{R.drawable.dot_normal,R.drawable.dot_focus})
+                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(this)
                 .setCanLoop(false);
@@ -50,6 +52,16 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     @Override
     public void onItemClick(int position) {
+        // Clicked the last one
+        if (position == INTEGERS.size() - 1) {
+            LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
+            //TODO check if user has login
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        INTEGERS.clear();
+        super.onDestroy();
     }
 }
