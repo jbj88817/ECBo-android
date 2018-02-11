@@ -6,6 +6,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import us.bojie.latte.app.Latte;
 import us.bojie.latte.ec.icon.FontEcModule;
+import us.bojie.latte.net.interceptors.DebugInterceptor;
 
 /**
  * Created by bojiejiang on 1/24/18.
@@ -19,6 +20,7 @@ public class ShoppingBoApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptor("index", R.raw.test))
                 .configure();
     }
 }
