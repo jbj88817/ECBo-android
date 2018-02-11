@@ -1,4 +1,4 @@
-package us.bojie.latte.ui;
+package us.bojie.latte.ui.loader;
 
 /**
  * Created by bojiejiang on 1/28/18.

@@ -1,4 +1,4 @@
-package us.bojie.latte.ui;
+package us.bojie.latte.ui.loader;
 
 import android.content.Context;
 

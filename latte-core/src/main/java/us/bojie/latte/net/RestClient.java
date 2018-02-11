@@ -17,8 +17,8 @@ import us.bojie.latte.net.callback.IRequest;
 import us.bojie.latte.net.callback.ISuccess;
 import us.bojie.latte.net.callback.RequestCallbacks;
 import us.bojie.latte.net.download.DownloadHandler;
-import us.bojie.latte.ui.LatteLoader;
-import us.bojie.latte.ui.LoaderStyle;
+import us.bojie.latte.ui.loader.LatteLoader;
+import us.bojie.latte.ui.loader.LoaderStyle;
 
 /**
  * Created by bojiejiang on 1/26/18.

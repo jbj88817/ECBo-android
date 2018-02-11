@@ -5,8 +5,8 @@ import android.os.Handler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import us.bojie.latte.ui.LatteLoader;
-import us.bojie.latte.ui.LoaderStyle;
+import us.bojie.latte.ui.loader.LatteLoader;
+import us.bojie.latte.ui.loader.LoaderStyle;
 
 /**
  * Created by bojiejiang on 1/28/18.
