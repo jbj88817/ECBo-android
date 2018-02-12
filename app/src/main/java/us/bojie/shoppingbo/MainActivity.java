@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 
 import us.bojie.latte.actvities.ProxyActivity;
 import us.bojie.latte.delegates.LatteDelegate;
-import us.bojie.latte.ec.sign.SignUpDelegate;
+import us.bojie.latte.ec.sign.SignInDelegate;
 
 public class MainActivity extends ProxyActivity {
 
@@ -21,6 +21,6 @@ public class MainActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new SignUpDelegate();
+        return new SignInDelegate();
     }
 }
