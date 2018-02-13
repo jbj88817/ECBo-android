@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
@@ -50,4 +51,9 @@ dependencies {
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     // FastJson
     api 'com.alibaba:fastjson:1.2.44'
+    //Log
+    api 'com.orhanobut:logger:2.1.1'
+    // GreenDao
+    api 'org.greenrobot:greendao:3.2.2'
+    api 'org.greenrobot:greendao-generator:3.2.2'
 }
