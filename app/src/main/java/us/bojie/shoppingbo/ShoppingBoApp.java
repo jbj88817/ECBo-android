@@ -7,6 +7,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import us.bojie.latte.app.Latte;
+import us.bojie.latte.ec.database.DatabaseManager;
 import us.bojie.latte.ec.icon.FontEcModule;
 import us.bojie.latte.net.interceptors.DebugInterceptor;
 
@@ -27,5 +28,8 @@ public class ShoppingBoApp extends Application {
 
         //Initialize logger
         Logger.addLogAdapter(new AndroidLogAdapter());
+
+        // Database
+        DatabaseManager.getInstance().init(this);
     }
 }
