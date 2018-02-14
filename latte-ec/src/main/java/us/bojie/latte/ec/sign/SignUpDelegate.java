@@ -5,13 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
+import us.bojie.latte.net.RestClient;
+import us.bojie.latte.net.callback.ISuccess;
+import us.bojie.latte.util.log.LatteLogger;
 
 /**
  * Created by bojiejiang on 2/11/18.
@@ -33,18 +35,17 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkForm()) {
-//            RestClient.builder()
-//                    .url("sign_up")
-//                    .params("","")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
-            Toast.makeText(getContext(), "Signed", Toast.LENGTH_SHORT).show();
+            RestClient.builder()
+                    .url("http://192.168.1.20:8080/RestServer/api/index")
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                        }
+                    })
+                    .build()
+                    .post();
+//            Toast.makeText(getContext(), "Signed", Toast.LENGTH_SHORT).show();
         }
     }
 

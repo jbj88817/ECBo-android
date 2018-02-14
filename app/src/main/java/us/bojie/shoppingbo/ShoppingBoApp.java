@@ -3,6 +3,8 @@ package us.bojie.shoppingbo;
 import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import us.bojie.latte.app.Latte;
 import us.bojie.latte.ec.icon.FontEcModule;
@@ -20,7 +22,10 @@ public class ShoppingBoApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(new DebugInterceptor("haha", R.raw.test))
                 .configure();
+
+        //Initialize logger
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 }
