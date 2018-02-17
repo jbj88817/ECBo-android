@@ -36,11 +36,12 @@ public class SignUpDelegate extends LatteDelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://192.168.1.20:8080/RestServer/api/index")
+                    .url("http://192.168.1.20:8080/RestServer/api/user_profile.php")
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignUp(response);
                         }
                     })
                     .build()

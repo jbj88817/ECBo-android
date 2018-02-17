@@ -2,6 +2,7 @@ package us.bojie.shoppingbo;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -31,5 +32,16 @@ public class ShoppingBoApp extends Application {
 
         // Database
         DatabaseManager.getInstance().init(this);
+
+        initStetho();
+    }
+
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build()
+        );
     }
 }
