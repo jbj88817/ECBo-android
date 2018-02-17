@@ -3,6 +3,7 @@ package us.bojie.latte.ec.sign;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
+import us.bojie.latte.app.AccountManger;
 import us.bojie.latte.ec.database.DatabaseManager;
 import us.bojie.latte.ec.database.UserProfile;
 
@@ -12,7 +13,7 @@ import us.bojie.latte.ec.database.UserProfile;
 
 public class SignHandler {
 
-    public static void onSignUp(String response) {
+    public static void onSignUp(String response, ISignListener signListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
         final String name = profileJson.getString("name");
@@ -23,5 +24,8 @@ public class SignHandler {
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
         DatabaseManager.getInstance().getUserProfileDao().insert(profile);
 
+        // Save signUp state
+        AccountManger.setSignState(true);
+        signListener.onSignUpSuccess();
     }
 }
