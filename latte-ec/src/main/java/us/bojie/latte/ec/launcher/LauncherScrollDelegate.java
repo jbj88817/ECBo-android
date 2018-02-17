@@ -1,5 +1,6 @@
 package us.bojie.latte.ec.launcher;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -9,9 +10,13 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 
+import us.bojie.latte.app.AccountManger;
+import us.bojie.latte.app.IUserChecker;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
+import us.bojie.latte.ui.launcher.ILauncherListener;
 import us.bojie.latte.ui.launcher.LauncherHolderCreator;
+import us.bojie.latte.ui.launcher.OnLauncherFinishTag;
 import us.bojie.latte.ui.launcher.ScrollLauncherTag;
 import us.bojie.latte.util.storage.LattePreference;
 
@@ -23,6 +28,7 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
+    private ILauncherListener mLauncherListener;
 
     private void initBanner() {
         INTEGERS.add(R.mipmap.launcher_01);
@@ -37,6 +43,14 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(this)
                 .setCanLoop(false);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ILauncherListener) {
+            mLauncherListener = (ILauncherListener) context;
+        }
     }
 
     @Override
@@ -55,7 +69,22 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         // Clicked the last one
         if (position == INTEGERS.size() - 1) {
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
-            //TODO check if user has login
+            // check if user has login
+            AccountManger.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

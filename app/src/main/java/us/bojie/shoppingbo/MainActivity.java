@@ -7,10 +7,14 @@ import android.widget.Toast;
 
 import us.bojie.latte.actvities.ProxyActivity;
 import us.bojie.latte.delegates.LatteDelegate;
+import us.bojie.latte.ec.launcher.LauncherDelegate;
 import us.bojie.latte.ec.sign.ISignListener;
-import us.bojie.latte.ec.sign.SignUpDelegate;
+import us.bojie.latte.ec.sign.SignInDelegate;
+import us.bojie.latte.ui.launcher.ILauncherListener;
+import us.bojie.latte.ui.launcher.OnLauncherFinishTag;
 
-public class MainActivity extends ProxyActivity implements ISignListener {
+public class MainActivity extends ProxyActivity implements
+        ISignListener, ILauncherListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,16 +27,32 @@ public class MainActivity extends ProxyActivity implements ISignListener {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new SignUpDelegate();
+        return new LauncherDelegate();
     }
 
     @Override
     public void onSignInSuccess() {
-
+        Toast.makeText(this, "sign in success", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSignUpSuccess() {
         Toast.makeText(this, "sign up success", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLauncherFinish(OnLauncherFinishTag tag) {
+        switch (tag) {
+            case SIGNED:
+                Toast.makeText(this, "signed", Toast.LENGTH_SHORT).show();
+                startWithPop(new ExampleDelegate());
+                break;
+            case NOT_SIGNED:
+                Toast.makeText(this, "NOT signed", Toast.LENGTH_SHORT).show();
+                startWithPop(new SignInDelegate());
+                break;
+            default:
+                break;
+        }
     }
 }

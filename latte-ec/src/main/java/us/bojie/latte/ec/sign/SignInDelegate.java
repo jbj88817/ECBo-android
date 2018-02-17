@@ -1,5 +1,6 @@
 package us.bojie.latte.ec.sign;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -11,6 +12,9 @@ import butterknife.OnClick;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
+import us.bojie.latte.net.RestClient;
+import us.bojie.latte.net.callback.ISuccess;
+import us.bojie.latte.util.log.LatteLogger;
 
 /**
  * Created by bojiejiang on 2/11/18.
@@ -22,10 +26,30 @@ public class SignInDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword;
 
+    private ISignListener mSignListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ISignListener) {
+            mSignListener = (ISignListener) context;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if (checkForm()) {
-            // TODO
+            RestClient.builder()
+                    .url("http://192.168.1.20:8080/RestServer/api/user_profile.php")
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignIn(response, mSignListener);
+                        }
+                    })
+                    .build()
+                    .post();
         }
     }
 

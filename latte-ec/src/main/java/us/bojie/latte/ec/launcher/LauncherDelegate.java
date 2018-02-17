@@ -1,5 +1,6 @@
 package us.bojie.latte.ec.launcher;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
@@ -10,9 +11,13 @@ import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import us.bojie.latte.app.AccountManger;
+import us.bojie.latte.app.IUserChecker;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
+import us.bojie.latte.ui.launcher.ILauncherListener;
+import us.bojie.latte.ui.launcher.OnLauncherFinishTag;
 import us.bojie.latte.ui.launcher.ScrollLauncherTag;
 import us.bojie.latte.util.storage.LattePreference;
 import us.bojie.latte.util.timer.BaseTimeTask;
@@ -29,6 +34,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     private Timer mTimer = null;
     private int mCount = 5;
+    private ILauncherListener mLauncherListener;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
@@ -50,6 +56,14 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ILauncherListener) {
+            mLauncherListener = (ILauncherListener) context;
+        }
+    }
+
+    @Override
     public Object setLayout() {
         return R.layout.delegate_launcher;
     }
@@ -63,7 +77,21 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
             start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
-            // TODO check if user has login
+            AccountManger.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

@@ -28,4 +28,17 @@ public class SignHandler {
         AccountManger.setSignState(true);
         signListener.onSignUpSuccess();
     }
+
+    public static void onSignIn(String response, ISignListener signListener) {
+        final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
+        final long userId = profileJson.getLong("userId");
+        final String name = profileJson.getString("name");
+        final String avatar = profileJson.getString("avatar");
+        final String gender = profileJson.getString("gender");
+        final String address = profileJson.getString("address");
+
+        // Save signUp state
+        AccountManger.setSignState(true);
+        signListener.onSignInSuccess();
+    }
 }
