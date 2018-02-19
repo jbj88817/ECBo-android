@@ -55,4 +55,7 @@ dependencies {
     // GreenDao
     api 'org.greenrobot:greendao:3.2.2'
     api 'org.greenrobot:greendao-generator:3.2.2'
+    // WeChat includes mta
+    //noinspection GradleDynamicVersion
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }

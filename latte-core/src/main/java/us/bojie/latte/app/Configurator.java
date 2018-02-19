@@ -1,5 +1,7 @@
 package us.bojie.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -76,6 +78,21 @@ public class Configurator {
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready, call configure");
         }
+    }
+
+    public final Configurator withWeChatAppID(String appId) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+        return this;
+    }
+
+    public final Configurator withWeChatAppSecret(String appSecret) {
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTVITY, activity);
+        return this;
     }
 
     @SuppressWarnings("unchecked")
