@@ -83,12 +83,12 @@ public class LatteProcessor extends AbstractProcessor {
     private void generatePayEntryCode(RoundEnvironment env) {
         final PayEntryVisitor payEntryVisitor = new PayEntryVisitor();
         payEntryVisitor.setFiler(processingEnv.getFiler());
-        scan(env, EntryGenerator.class, payEntryVisitor);
+        scan(env, PayEntryGenerator.class, payEntryVisitor);
     }
 
     private void generateAppRegisterCode(RoundEnvironment env) {
         final AppRegisterVisitor appRegisterVisitor = new AppRegisterVisitor();
         appRegisterVisitor.setFiler(processingEnv.getFiler());
-        scan(env, EntryGenerator.class, appRegisterVisitor);
+        scan(env, AppRegisterGenerator.class, appRegisterVisitor);
     }
 }
