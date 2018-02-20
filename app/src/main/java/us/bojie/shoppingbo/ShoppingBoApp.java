@@ -25,6 +25,8 @@ public class ShoppingBoApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("haha", R.raw.test))
+                .withWeChatAppID("")
+                .withWeChatAppSecret("")
                 .configure();
 
         //Initialize logger

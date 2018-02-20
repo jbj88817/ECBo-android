@@ -8,6 +8,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import us.bojie.latte.app.ConfigKeys;
 import us.bojie.latte.app.Latte;
+import us.bojie.latte.wechat.callbacks.IWeChatSignInCallBack;
 
 /**
  * Created by bojiejiang on 2/18/18.
@@ -17,6 +18,7 @@ public class LatteWeChat {
     static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
     static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
     private final IWXAPI mWXAPI;
+    private IWeChatSignInCallBack mWeChatSignInCallBack;
 
     private static final class Holder {
         private static final LatteWeChat INSTANCE = new LatteWeChat();
@@ -34,6 +36,15 @@ public class LatteWeChat {
 
     public final IWXAPI getWXAPI() {
         return mWXAPI;
+    }
+
+    public LatteWeChat onSignSuccess(IWeChatSignInCallBack callBack) {
+        mWeChatSignInCallBack = callBack;
+        return this;
+    }
+
+    public IWeChatSignInCallBack getWeChatSignInCallBack() {
+        return mWeChatSignInCallBack;
     }
 
     public final void signIn() {
