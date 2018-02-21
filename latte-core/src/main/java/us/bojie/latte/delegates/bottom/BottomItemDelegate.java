@@ -30,7 +30,7 @@ public abstract class BottomItemDelegate extends LatteDelegate
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - mExitTime) > mExitTime) {
+            if ((System.currentTimeMillis() - mExitTime) > EXIT_TIME) {
                 Toast.makeText(getContext(), "Press one more time to exit",
                         Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
