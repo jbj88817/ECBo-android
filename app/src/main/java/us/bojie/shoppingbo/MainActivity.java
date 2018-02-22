@@ -9,6 +9,7 @@ import us.bojie.latte.actvities.ProxyActivity;
 import us.bojie.latte.app.Latte;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.launcher.LauncherDelegate;
+import us.bojie.latte.ec.main.EcBottomDelegate;
 import us.bojie.latte.ec.sign.ISignListener;
 import us.bojie.latte.ec.sign.SignInDelegate;
 import us.bojie.latte.ui.launcher.ILauncherListener;
@@ -35,6 +36,7 @@ public class MainActivity extends ProxyActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "sign in success", Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomDelegate());
     }
 
     @Override
@@ -47,7 +49,7 @@ public class MainActivity extends ProxyActivity implements
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "signed", Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "NOT signed", Toast.LENGTH_SHORT).show();
