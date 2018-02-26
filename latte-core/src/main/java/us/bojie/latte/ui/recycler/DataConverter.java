@@ -18,4 +18,11 @@ public abstract class DataConverter {
         return this;
     }
 
+    protected String getJsonData() {
+        if (mJsonData == null || mJsonData.isEmpty()) {
+            throw new NullPointerException("Data is null!");
+        }
+        return mJsonData;
+    }
+
 }
