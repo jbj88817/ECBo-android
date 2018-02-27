@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import us.bojie.latte.ui.recycler.DataConverter;
 import us.bojie.latte.ui.recycler.ItemType;
+import us.bojie.latte.ui.recycler.MultipleFields;
 import us.bojie.latte.ui.recycler.MultipleItemEntity;
 
 /**
@@ -46,7 +47,18 @@ public final class IndexDataConverter extends DataConverter {
                     bannerImages.add(banner);
                 }
             }
+
+            final MultipleItemEntity entity = MultipleItemEntity.builder()
+                    .setField(MultipleFields.ITEM_TYPE, type)
+                    .setField(MultipleFields.SPAN_SIZE,spanSize)
+                    .setField(MultipleFields.ID,id)
+                    .setField(MultipleFields.TEXT,text)
+                    .setField(MultipleFields.IMAGE_URL,imageUrl)
+                    .setField(MultipleFields.BANNERS,bannerImages)
+                    .build();
+
+            mEntities.add(entity);
         }
-        return null;
+        return mEntities;
     }
 }
