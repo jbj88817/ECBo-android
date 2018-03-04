@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
+import qiu.niorgai.StatusBarCompat;
 import us.bojie.latte.actvities.ProxyActivity;
 import us.bojie.latte.app.Latte;
 import us.bojie.latte.delegates.LatteDelegate;
@@ -26,6 +27,7 @@ public class MainActivity extends ProxyActivity implements
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override
