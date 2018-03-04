@@ -7,20 +7,13 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
-import us.bojie.latte.net.RestClient;
-import us.bojie.latte.net.callback.ISuccess;
-import us.bojie.latte.ui.recycler.MultipleFields;
-import us.bojie.latte.ui.recycler.MultipleItemEntity;
 import us.bojie.latte.ui.refresh.RefreshHandler;
 
 /**
@@ -29,7 +22,7 @@ import us.bojie.latte.ui.refresh.RefreshHandler;
 
 public class IndexDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_index)
-    RecyclerView mRvIndex;
+    RecyclerView mRecyclerView;
     @BindView(R2.id.srl_index)
     SwipeRefreshLayout mRefreshLayout;
     @BindView(R2.id.icon_index_scan)
@@ -66,20 +59,6 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
-        RestClient.builder()
-                .url("index.php")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        final IndexDataConverter converter = new IndexDataConverter();
-                        converter.setJsonData(response);
-                        final ArrayList<MultipleItemEntity> list = converter.convert();
-                        final String image = list.get(1).getField(MultipleFields.IMAGE_URL);
-                        Toast.makeText(getContext(), image, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
     }
 }
