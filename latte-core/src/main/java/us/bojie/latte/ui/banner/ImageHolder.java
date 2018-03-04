@@ -7,7 +7,8 @@ import android.view.View;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import us.bojie.latte.GlideApp;
+import us.bojie.latte.ui.image.GlideApp;
+
 
 /**
  * Created by bojiejiang on 3/3/18.

@@ -2,6 +2,7 @@ package us.bojie.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
+import us.bojie.latte.ui.recycler.BaseDecoration;
 import us.bojie.latte.ui.refresh.RefreshHandler;
 
 /**
@@ -64,8 +66,11 @@ public class IndexDelegate extends BottomItemDelegate {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void initRecyclerView() {
         GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(BaseDecoration.create
+                (ContextCompat.getColor(getContext(), R.color.app_background), 5));
     }
 }

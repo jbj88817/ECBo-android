@@ -13,9 +13,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import us.bojie.latte.GlideApp;
 import us.bojie.latte.R;
 import us.bojie.latte.ui.banner.BannerCreator;
+import us.bojie.latte.ui.image.GlideApp;
 
 /**
  * Created by bojiejiang on 3/1/18.

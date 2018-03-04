@@ -58,7 +58,9 @@ dependencies {
     // WeChat includes mta
     //noinspection GradleDynamicVersion
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    // Recycler View
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
+    api 'com.choices.divider:RecyclerView_Divider:1.0.0'
     // Image loader
     api 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'

@@ -1,4 +1,4 @@
-package us.bojie.latte;
+package us.bojie.latte.ui.image;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
@@ -8,5 +8,5 @@ import com.bumptech.glide.module.AppGlideModule;
  */
 
 @GlideModule
-public class MyAppGlideModule extends AppGlideModule {
+public class LatteGlideModule extends AppGlideModule {
 }
