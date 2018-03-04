@@ -16,6 +16,7 @@ import butterknife.BindView;
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.R2;
+import us.bojie.latte.ec.main.EcBottomDelegate;
 import us.bojie.latte.ui.recycler.BaseDecoration;
 import us.bojie.latte.ui.refresh.RefreshHandler;
 
@@ -72,5 +73,7 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(BaseDecoration.create
                 (ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 }
