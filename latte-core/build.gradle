@@ -35,8 +35,8 @@ dependencies {
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     // For fragment
-    api 'me.yokeyword:fragmentation:1.2.5'
-    api 'me.yokeyword:fragmentation-swipeback:1.2.5'
+    api 'me.yokeyword:fragmentation:1.2.7'
+    api 'me.yokeyword:fragmentation-swipeback:1.2.7'
     // ButterKnife
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
