@@ -22,6 +22,7 @@ import us.bojie.latte.ui.recycler.MultipleViewHolder;
 public class SortRecyclerAdapter extends MultipleRecyclerViewAdapter {
 
     private SortDelegate mSortDelegate;
+    private int mPrePosition;
 
     protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
         super(data);
@@ -31,7 +32,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerViewAdapter {
     }
 
     @Override
-    protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
+    protected void convert(final MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
@@ -43,7 +44,19 @@ public class SortRecyclerAdapter extends MultipleRecyclerViewAdapter {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        final int currentPosition = holder.getAdapterPosition();
+                        if (mPrePosition != currentPosition) {
+                            // Restore previous one
+                            getData().get(mPrePosition).setField(MultipleFields.TAG, false);
+                            notifyItemChanged(mPrePosition);
 
+                            // Refresh selected item
+                            entity.setField(MultipleFields.TAG, true);
+                            notifyItemChanged(currentPosition);
+                            mPrePosition = currentPosition;
+
+                            final int contentId = getData().get(currentPosition).getField(MultipleFields.ID);
+                        }
                     }
                 });
 
