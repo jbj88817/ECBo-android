@@ -7,8 +7,10 @@ import android.view.View;
 
 import java.util.List;
 
+import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.ec.R;
 import us.bojie.latte.ec.main.sort.SortDelegate;
+import us.bojie.latte.ec.main.sort.content.ContentDelegate;
 import us.bojie.latte.ui.recycler.ItemType;
 import us.bojie.latte.ui.recycler.MultipleFields;
 import us.bojie.latte.ui.recycler.MultipleItemEntity;
@@ -56,6 +58,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerViewAdapter {
                             mPrePosition = currentPosition;
 
                             final int contentId = getData().get(currentPosition).getField(MultipleFields.ID);
+                            showContent(contentId);
                         }
                     }
                 });
@@ -75,6 +78,18 @@ public class SortRecyclerAdapter extends MultipleRecyclerViewAdapter {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void showContent(int contentId) {
+        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+        switchContent(delegate);
+    }
+
+    private void switchContent(ContentDelegate delegate) {
+        final LatteDelegate contentDelegate = mSortDelegate.findChildFragment(ContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.replaceFragment(delegate, false);
         }
     }
 }
