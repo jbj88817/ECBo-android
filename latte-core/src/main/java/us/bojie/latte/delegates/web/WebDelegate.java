@@ -1,5 +1,6 @@
 package us.bojie.latte.delegates.web;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
@@ -33,6 +34,7 @@ public abstract class WebDelegate extends LatteDelegate {
         mUrl = args != null ? args.getString(RouteKeys.URL.name()) : null;
     }
 
+    @SuppressLint("JavascriptInterface")
     private void initWebView() {
         if (mWebView != null) {
             mWebView.removeAllViews();
@@ -46,8 +48,43 @@ public abstract class WebDelegate extends LatteDelegate {
                 mWebView = initializer.initWebView(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
-
+                mWebView.addJavascriptInterface(LatteWebInterface.create(this), "latte");
+                mIsWebViewAvailable = true;
+            } else {
+                throw new NullPointerException("Initializer is null!");
             }
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mWebView != null) {
+            mWebView.onPause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mWebView != null) {
+            mWebView.onResume();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mIsWebViewAvailable = true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mWebView != null) {
+            mWebView.removeAllViews();
+            mWebView.destroy();
+            mWebView = null;
         }
     }
 }
