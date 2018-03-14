@@ -56,6 +56,13 @@ public abstract class WebDelegate extends LatteDelegate {
         }
     }
 
+    public WebView getWebView() {
+        if (mWebView == null) {
+            throw new NullPointerException("WebView is null");
+        }
+        return mIsWebViewAvailable ? mWebView : null;
+    }
+
     @Override
     public void onPause() {
         super.onPause();
