@@ -63,6 +63,13 @@ public abstract class WebDelegate extends LatteDelegate {
         return mIsWebViewAvailable ? mWebView : null;
     }
 
+    public String getUrl(){
+        if (mUrl == null) {
+            throw new NullPointerException("Url is null");
+        }
+        return mUrl;
+    }
+
     @Override
     public void onPause() {
         super.onPause();

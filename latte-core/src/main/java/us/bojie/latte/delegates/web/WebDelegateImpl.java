@@ -27,7 +27,9 @@ public class WebDelegateImpl extends WebDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        if (getUrl() != null) {
 
+        }
     }
 
     @Override
