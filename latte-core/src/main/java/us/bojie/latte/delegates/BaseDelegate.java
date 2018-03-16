@@ -42,7 +42,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
         return rootView;
     }
 
-    public final ProxyActivity getProxyActivity(){
+    public final ProxyActivity getProxyActivity() {
         return (ProxyActivity) _mActivity;
     }
 
