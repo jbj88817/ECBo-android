@@ -4,6 +4,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import us.bojie.latte.delegates.web.WebDelegate;
+import us.bojie.latte.delegates.web.route.Router;
 import us.bojie.latte.util.log.LatteLogger;
 
 /**
@@ -21,6 +22,6 @@ public class WebViewClientImpl extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         LatteLogger.d("shouldOverrideUrlLoading", url);
-        return super.shouldOverrideUrlLoading(view, url);
+        return Router.getInstance().handleWebUrl(mDelegate, url);
     }
 }

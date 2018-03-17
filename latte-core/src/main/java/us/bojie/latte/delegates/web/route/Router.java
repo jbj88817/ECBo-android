@@ -22,5 +22,4 @@ public class Router {
     public final boolean handleWebUrl(WebDelegate delegate, String url) {
         return true;
     }
-
 }
