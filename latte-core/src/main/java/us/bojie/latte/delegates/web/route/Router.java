@@ -56,12 +56,16 @@ public class Router {
         loadWebPage(webView, "file:///android_asset/" + url);
     }
 
-    public void loadPage(WebView webView, String url) {
+    private void loadPage(WebView webView, String url) {
         if (URLUtil.isNetworkUrl(url) || URLUtil.isAssetUrl(url)) {
             loadWebPage(webView, url);
         } else {
             loadLocalPage(webView, url);
         }
+    }
+
+    public void loadPage(WebDelegate delegate, String url) {
+        loadPage(delegate.getWebView(), url);
     }
 
     private void callPhone(Context context, String url) {

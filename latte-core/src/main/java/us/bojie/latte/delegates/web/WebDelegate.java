@@ -15,7 +15,8 @@ import us.bojie.latte.delegates.web.route.RouteKeys;
  * Created by bojiejiang on 3/7/18.
  */
 
-public abstract class WebDelegate extends LatteDelegate {
+public abstract class WebDelegate extends LatteDelegate
+        implements IWebViewInitializer {
 
     private WebView mWebView;
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
@@ -63,7 +64,7 @@ public abstract class WebDelegate extends LatteDelegate {
         return mIsWebViewAvailable ? mWebView : null;
     }
 
-    public String getUrl(){
+    public String getUrl() {
         if (mUrl == null) {
             throw new NullPointerException("Url is null");
         }
