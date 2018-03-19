@@ -22,6 +22,7 @@ public abstract class WebDelegate extends LatteDelegate
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl;
     private boolean mIsWebViewAvailable;
+    private LatteDelegate mTopDelegate;
 
     public WebDelegate() {
     }
@@ -56,6 +57,17 @@ public abstract class WebDelegate extends LatteDelegate
                 throw new NullPointerException("Initializer is null!");
             }
         }
+    }
+
+    public void setTopDelegate(LatteDelegate delegate) {
+        mTopDelegate = delegate;
+    }
+
+    public LatteDelegate getTopDelegate() {
+        if (mTopDelegate == null) {
+            mTopDelegate = this;
+        }
+        return mTopDelegate;
     }
 
     public WebView getWebView() {
