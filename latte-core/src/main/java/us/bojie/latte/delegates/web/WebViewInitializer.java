@@ -1,5 +1,6 @@
 package us.bojie.latte.delegates.web;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -9,6 +10,7 @@ import android.webkit.WebView;
  */
 
 public class WebViewInitializer {
+    @SuppressLint("SetJavaScriptEnabled")
     public WebView createWebView(WebView webView) {
         WebView.setWebContentsDebuggingEnabled(true);
         webView.setHorizontalScrollBarEnabled(false);
@@ -25,6 +27,7 @@ public class WebViewInitializer {
 
         // Init settings
         final WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
         final String ua = settings.getUserAgentString();
         settings.setUserAgentString(ua + "Latte");
 
