@@ -22,7 +22,7 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.ContentFrameLayout
-        android:id="@+id/web_container"
+        android:id="@+id/web_discovery_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

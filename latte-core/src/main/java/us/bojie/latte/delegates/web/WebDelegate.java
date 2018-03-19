@@ -33,6 +33,7 @@ public abstract class WebDelegate extends LatteDelegate
         super.onCreate(savedInstanceState);
         final Bundle args = getArguments();
         mUrl = args != null ? args.getString(RouteKeys.URL.name()) : null;
+        initWebView();
     }
 
     @SuppressLint("JavascriptInterface")

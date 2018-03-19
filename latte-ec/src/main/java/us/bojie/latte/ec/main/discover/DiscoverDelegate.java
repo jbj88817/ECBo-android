@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
+import us.bojie.latte.delegates.web.WebDelegateImpl;
 import us.bojie.latte.ec.R;
 
 /**
@@ -21,5 +22,12 @@ public class DiscoverDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        final WebDelegateImpl delegate = WebDelegateImpl.create("index.html");
+        loadRootFragment(R.id.web_discovery_container, delegate);
     }
 }

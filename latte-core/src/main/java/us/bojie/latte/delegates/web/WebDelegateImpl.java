@@ -7,6 +7,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import us.bojie.latte.delegates.web.chromeclient.WebChromeClientImpl;
 import us.bojie.latte.delegates.web.client.WebViewClientImpl;
 import us.bojie.latte.delegates.web.route.RouteKeys;
 import us.bojie.latte.delegates.web.route.Router;
@@ -55,6 +56,6 @@ public class WebDelegateImpl extends WebDelegate {
 
     @Override
     public WebChromeClient initWebChromeClient() {
-        return null;
+        return new WebChromeClientImpl();
     }
 }
