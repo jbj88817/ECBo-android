@@ -1,8 +1,9 @@
 package us.bojie.latte.delegates.web.event;
 
 import android.content.Context;
+import android.webkit.WebView;
 
-import us.bojie.latte.delegates.LatteDelegate;
+import us.bojie.latte.delegates.web.WebDelegate;
 
 /**
  * Created by bojiejiang on 3/18/18.
@@ -11,11 +12,16 @@ import us.bojie.latte.delegates.LatteDelegate;
 public abstract class Event implements IEvent {
     private Context mContext;
     private String mAction;
-    private LatteDelegate mDelegate;
+    private WebDelegate mDelegate;
     private String mUrl;
+    private WebView mWebView;
 
     public Context getContext() {
         return mContext;
+    }
+
+    public WebView getWebView() {
+        return mDelegate.getWebView();
     }
 
     public void setContext(Context context) {
@@ -30,11 +36,11 @@ public abstract class Event implements IEvent {
         mAction = action;
     }
 
-    public LatteDelegate getDelegate() {
+    public WebDelegate getDelegate() {
         return mDelegate;
     }
 
-    public void setDelegate(LatteDelegate delegate) {
+    public void setDelegate(WebDelegate delegate) {
         mDelegate = delegate;
     }
 
