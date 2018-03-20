@@ -98,6 +98,11 @@ public class Configurator {
         return this;
     }
 
+    public Configurator withJavascriptInterface(String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
     @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
