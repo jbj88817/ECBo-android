@@ -2,6 +2,7 @@ package us.bojie.latte.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.Interceptor;
+import us.bojie.latte.delegates.web.event.Event;
+import us.bojie.latte.delegates.web.event.EventManager;
 
 /**
  * Created by bojiejiang on 1/22/18.
@@ -100,6 +103,12 @@ public class Configurator {
 
     public Configurator withJavascriptInterface(String name) {
         LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
+
+    public Configurator withWebEvent(String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
         return this;
     }
 

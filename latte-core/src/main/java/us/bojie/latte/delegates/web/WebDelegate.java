@@ -8,6 +8,8 @@ import android.webkit.WebView;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 
+import us.bojie.latte.app.ConfigKeys;
+import us.bojie.latte.app.Latte;
 import us.bojie.latte.delegates.LatteDelegate;
 import us.bojie.latte.delegates.web.route.RouteKeys;
 
@@ -51,7 +53,8 @@ public abstract class WebDelegate extends LatteDelegate
                 mWebView = initializer.initWebView(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
-                mWebView.addJavascriptInterface(LatteWebInterface.create(this), "latte");
+                final String name = Latte.getConfiguration(ConfigKeys.JAVASCRIPT_INTERFACE);
+                mWebView.addJavascriptInterface(LatteWebInterface.create(this), name);
                 mIsWebViewAvailable = true;
             } else {
                 throw new NullPointerException("Initializer is null!");

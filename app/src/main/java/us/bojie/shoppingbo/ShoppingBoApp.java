@@ -8,6 +8,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import us.bojie.latte.app.Latte;
+import us.bojie.shoppingbo.event.TestEvent;
 import us.bojie.latte.ec.database.DatabaseManager;
 import us.bojie.latte.ec.icon.FontEcModule;
 import us.bojie.latte.net.interceptors.DebugInterceptor;
@@ -25,8 +26,10 @@ public class ShoppingBoApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://192.168.1.20:8080/RestServer/api/")
                 .withInterceptor(new DebugInterceptor("haha", R.raw.test))
-                .withWeChatAppID("")
-                .withWeChatAppSecret("")
+                .withWeChatAppID("wxfcdcecd9df8e0faa")
+                .withWeChatAppSecret("a0560f75335b06e3ebea70f29ff219bf")
+                .withJavascriptInterface("latte")
+                .withWebEvent("test", new TestEvent())
                 .configure();
 
         //Initialize logger

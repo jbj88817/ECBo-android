@@ -1,7 +1,9 @@
-package us.bojie.latte.delegates.web.event;
+package us.bojie.shoppingbo.event;
 
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import us.bojie.latte.delegates.web.event.Event;
 
 /**
  * Created by bojiejiang on 3/18/18.

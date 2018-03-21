@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSON;
 
 import us.bojie.latte.delegates.web.event.Event;
 import us.bojie.latte.delegates.web.event.EventManager;
-import us.bojie.latte.delegates.web.event.TestEvent;
 
 /**
  * Created by bojiejiang on 3/9/18.
@@ -26,7 +25,6 @@ final class LatteWebInterface {
     @JavascriptInterface
     public String event(String params){
         final String action = JSON.parseObject(params).getString("action");
-        EventManager.getInstance().addEvent(action, new TestEvent());
         final Event event = EventManager.getInstance().crateEvent(action);
         if (event != null) {
             event.setAction(action);
