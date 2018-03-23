@@ -8,6 +8,7 @@ import us.bojie.latte.delegates.bottom.BaseBottomDelegate;
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
 import us.bojie.latte.delegates.bottom.BottomTabBean;
 import us.bojie.latte.delegates.bottom.ItemBuilder;
+import us.bojie.latte.ec.main.cart.ShoppingCartDelegate;
 import us.bojie.latte.ec.main.discover.DiscoverDelegate;
 import us.bojie.latte.ec.main.index.IndexDelegate;
 import us.bojie.latte.ec.main.sort.SortDelegate;
@@ -25,7 +26,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-home}", "Main"), new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}", "Category"), new SortDelegate());
         items.put(new BottomTabBean("{fa-compass}", "Discover"), new DiscoverDelegate());
-        items.put(new BottomTabBean("{fa-shopping-cart}", "Cart"), new IndexDelegate());
+        items.put(new BottomTabBean("{fa-shopping-cart}", "Cart"), new ShoppingCartDelegate());
         items.put(new BottomTabBean("{fa-user}", "Me"), new IndexDelegate());
         return builder.addItems(items).build();
     }
