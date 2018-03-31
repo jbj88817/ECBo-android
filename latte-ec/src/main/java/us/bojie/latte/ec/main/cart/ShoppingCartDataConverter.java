@@ -28,15 +28,15 @@ public class ShoppingCartDataConverter extends DataConverter {
             final double price = data.getDouble("price");
 
             final MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ShopCartItemType.SHOP_CART_ITEM)
+                    .setField(MultipleFields.ITEM_TYPE, ShoppingCartItemType.SHOP_CART_ITEM)
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.IMAGE_URL, thumb)
-                    .setField(ShopCartItemFields.TITLE, title)
-                    .setField(ShopCartItemFields.DESC, desc)
-                    .setField(ShopCartItemFields.COUNT, count)
-                    .setField(ShopCartItemFields.PRICE, price)
-                    .setField(ShopCartItemFields.IS_SELECTED, false)
-                    .setField(ShopCartItemFields.POSITION, i)
+                    .setField(ShoppingCartItemFields.TITLE, title)
+                    .setField(ShoppingCartItemFields.DESC, desc)
+                    .setField(ShoppingCartItemFields.COUNT, count)
+                    .setField(ShoppingCartItemFields.PRICE, price)
+                    .setField(ShoppingCartItemFields.IS_SELECTED, false)
+                    .setField(ShoppingCartItemFields.POSITION, i)
                     .build();
 
             dataList.add(entity);

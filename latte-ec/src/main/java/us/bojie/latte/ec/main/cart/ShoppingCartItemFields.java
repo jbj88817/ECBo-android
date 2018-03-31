@@ -1,6 +1,6 @@
 package us.bojie.latte.ec.main.cart;
 
-enum ShopCartItemFields {
+enum ShoppingCartItemFields {
     TITLE,
     DESC,
     COUNT,
