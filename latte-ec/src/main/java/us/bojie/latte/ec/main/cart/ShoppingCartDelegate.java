@@ -2,19 +2,30 @@ package us.bojie.latte.ec.main.cart;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
 import us.bojie.latte.delegates.bottom.BottomItemDelegate;
 import us.bojie.latte.ec.R;
+import us.bojie.latte.ec.R2;
 import us.bojie.latte.net.RestClient;
 import us.bojie.latte.net.callback.ISuccess;
+import us.bojie.latte.ui.recycler.MultipleItemEntity;
 
 /**
  * Created by bojiejiang on 3/22/18.
  */
 
 public class ShoppingCartDelegate extends BottomItemDelegate implements ISuccess {
+
+    @BindView(R2.id.rv_shopping_cart)
+    RecyclerView mRecyclerView;
+
+    private ShoppingCartAdapter mAdapter;
 
     @Override
     public Object setLayout() {
@@ -39,6 +50,13 @@ public class ShoppingCartDelegate extends BottomItemDelegate implements ISuccess
 
     @Override
     public void onSuccess(String response) {
-        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+        final ArrayList<MultipleItemEntity> data =
+                new ShoppingCartDataConverter()
+                        .setJsonData(response)
+                        .convert();
+        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(manager);
+        mAdapter = new ShoppingCartAdapter(data);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

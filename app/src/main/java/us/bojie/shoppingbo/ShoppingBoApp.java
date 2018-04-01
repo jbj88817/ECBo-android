@@ -24,7 +24,7 @@ public class ShoppingBoApp extends Application {
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
-                .withApiHost("http://192.168.1.20:8080/RestServer/api/")
+                .withApiHost("http://192.168.1.11:8080/RestServer/api/")
                 .withInterceptor(new DebugInterceptor("haha", R.raw.test))
                 .withWeChatAppID("wxfcdcecd9df8e0faa")
                 .withWeChatAppSecret("a0560f75335b06e3ebea70f29ff219bf")

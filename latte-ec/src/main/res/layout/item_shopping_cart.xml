@@ -80,7 +80,7 @@
             android:id="@+id/tv_item_shopping_cart_count"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="2"
             android:textSize="18sp"/>
 
